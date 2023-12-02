@@ -14,6 +14,7 @@ class _DisplayStoreDataState extends State<DisplayStoreData> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Display Data'),
+
       ),
       body: ListView.builder(
         itemCount: widget.data.length,

@@ -324,10 +324,10 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
   Future<void> _submitData() async {
     // Save data to local storage using shared_preferences
     SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    // Save data to Firestore
-    CollectionReference roomsCollection =
-        FirebaseFirestore.instance.collection('rooms');
+    //
+    // // Save data to Firestore
+    // CollectionReference roomsCollection =
+    //     FirebaseFirestore.instance.collection('rooms');
 
     List<String> roomList = rooms.map((room) {
       List<String> memberList = room.members.map((member) {
@@ -344,24 +344,24 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
     print("rooms: ${prefs.get("rooms")}");
     // Clear all text fields
 
-    // Upload data to Firestore
-    roomList.forEach((roomData) {
-      List<String> members = roomData.split(';');
-      List<Map<String, dynamic>> memberData = members.map((member) {
-        List<String> memberInfo = member.split('|');
-        return {
-          'firstName': memberInfo[0],
-          'lastName': memberInfo[1],
-          'isChild': memberInfo[2] == 'true',
-          'dateOfBirth': memberInfo[3],
-        };
-      }).toList();
-
-      // Create a Firestore document for each room
-      roomsCollection.add({
-        'members': memberData,
-      });
-    });
+    // // Upload data to Firestore
+    // roomList.forEach((roomData) {
+    //   List<String> members = roomData.split(';');
+    //   List<Map<String, dynamic>> memberData = members.map((member) {
+    //     List<String> memberInfo = member.split('|');
+    //     return {
+    //       'firstName': memberInfo[0],
+    //       'lastName': memberInfo[1],
+    //       'isChild': memberInfo[2] == 'true',
+    //       'dateOfBirth': memberInfo[3],
+    //     };
+    //   }).toList();
+    //
+    //   // Create a Firestore document for each room
+    //   roomsCollection.add({
+    //     'members': memberData,
+    //   });
+    // });
 
     _clearTextFields();
 
